@@ -28,6 +28,11 @@ class UserManager(BaseUserManager):
         )
         user.set_password(password)
         user.save(using=self._db)
+
+        return user
+    def create_superuser(self,username,email,phone,password=None,**extra):
+        extra.setdefault("is_staff",True)
+        extra.setdefault("is_superuser",True)
         return self.create_user(username,email,phone,password,**extra)
     
 class User(AbstractBaseUser,PermissionsMixin):
@@ -41,7 +46,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     )
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    date_joined = models.DateField(default=timezone.now)
+    date_joined = models.DateTimeField(default=timezone.now)
     objects = UserManager()
     USERNAME_FIELD  = "username"
     REQUIRED_FIELDS = ["email","phone"]

@@ -48,6 +48,13 @@ INSTALLED_APPS = [
     'ckeditor',
 ]
 
+AUTH_USER_MODEL = "accounts.User"
+
+AUTHENTICARION_BACKENDS = [
+    "accounts.backends.UsernameEmailPhoneBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
+
 CORS_ALLOWED_ORIGINS = [
 
     "http://localhost:3000",
@@ -96,7 +103,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'corsheaders.middleweare.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'ecommerce_api.urls'
@@ -155,7 +162,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Yangon'
 
 USE_I18N = True
 
